@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Opportunity Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div>
+        <h1>Research Opportunities</h1>
+        <p class="sub">FAST-NUCES Peshawar &middot; one place for every open position</p>
+      </div>
+      <button id="btnNew" class="btn primary">Post an opportunity</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+    <div class="toolbar">
+      <div class="tabs" role="tablist" aria-label="Filter by status">
+        <button class="tab active" data-filter="All">All <span id="cAll">0</span></button>
+        <button class="tab" data-filter="Open">Open <span id="cOpen">0</span></button>
+        <button class="tab" data-filter="Closed">Closed <span id="cClosed">0</span></button>
+      </div>
+    </div>
+
+    <p id="state" class="state">Loading opportunities&hellip;</p>
+    <ul id="list" class="list"></ul>
+  </main>
+
+  <!-- Details -->
+  <dialog id="dlgDetails" class="dlg">
+    <div class="dlg-head"><h2 id="dTitle"></h2><button class="x" data-close aria-label="Close">&times;</button></div>
+    <div id="dBody" class="dlg-body"></div>
+    <div class="dlg-foot">
+      <button class="btn" data-close>Close</button>
+    </div>
+  </dialog>
+
+  <!-- Create / Edit -->
+  <dialog id="dlgForm" class="dlg">
+    <form id="form" novalidate>
+      <div class="dlg-head"><h2 id="fTitle">Post an opportunity</h2><button type="button" class="x" data-close aria-label="Close">&times;</button></div>
+      <div class="dlg-body grid">
+        <input type="hidden" id="fId">
+        <div class="field full"><label for="title">Research title *</label><input id="title" name="title" maxlength="255"><span class="err"></span></div>
+        <div class="field full"><label for="description">Description *</label><textarea id="description" name="description" rows="3"></textarea><span class="err"></span></div>
+        <div class="field"><label for="research_area">Research area *</label><input id="research_area" name="research_area" maxlength="150"><span class="err"></span></div>
+        <div class="field"><label for="faculty_name">Faculty member *</label><input id="faculty_name" name="faculty_name" maxlength="150"><span class="err"></span></div>
+        <div class="field"><label for="department">Department *</label><input id="department" name="department" maxlength="150"><span class="err"></span></div>
+        <div class="field"><label for="required_skills">Required skills *</label><input id="required_skills" name="required_skills" maxlength="500" placeholder="e.g. Python, SQL"><span class="err"></span></div>
+        <div class="field"><label for="available_positions">Available positions *</label><input id="available_positions" name="available_positions" type="number" min="1" step="1"><span class="err"></span></div>
+        <div class="field"><label for="application_deadline">Application deadline *</label><input id="application_deadline" name="application_deadline" type="date"><span class="err"></span></div>
+        <div class="field"><label for="status">Status</label>
+          <select id="status" name="status"><option>Open</option><option>Closed</option></select><span class="err"></span></div>
+      </div>
+      <div id="formError" class="form-error" hidden></div>
+      <div class="dlg-foot">
+        <button type="button" class="btn" data-close>Cancel</button>
+        <button type="submit" class="btn primary" id="btnSave">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Delete confirm -->
+  <dialog id="dlgDelete" class="dlg small">
+    <div class="dlg-head"><h2>Delete opportunity?</h2></div>
+    <div class="dlg-body"><p id="delText"></p></div>
+    <div class="dlg-foot">
+      <button class="btn" data-close>Keep it</button>
+      <button class="btn danger" id="btnConfirmDelete">Delete</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
